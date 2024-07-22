@@ -1,5 +1,6 @@
 import org.apache.flink.api.common.functions.JoinFunction;
 import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.api.common.operators.base.JoinOperatorBase;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.operators.MapOperator;
 import org.apache.flink.api.java.tuple.Tuple2;
@@ -31,21 +32,21 @@ public class flinkJoinTest {
                 .print();
 
         System.out.println("Left Outer Join");
-        personMap.leftOuterJoin(locationMap)
+        personMap.leftOuterJoin(locationMap, JoinOperatorBase.JoinHint.OPTIMIZER_CHOOSES)
                 .where(0)
                 .equalTo(0)
                 .with(new Joiner())
                 .print();
 
         System.out.println("Right Outer Join");
-        personMap.rightOuterJoin(locationMap)
+        personMap.rightOuterJoin(locationMap, JoinOperatorBase.JoinHint.REPARTITION_HASH_SECOND)
                 .where(0)
                 .equalTo(0)
                 .with(new Joiner())
                 .print();
 
         System.out.println("Full Outer Join");
-        personMap.fullOuterJoin(locationMap)
+        personMap.fullOuterJoin(locationMap, JoinOperatorBase.JoinHint.REPARTITION_HASH_SECOND)
                 .where(0)
                 .equalTo(0)
                 .with(new Joiner())
