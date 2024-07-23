@@ -123,17 +123,17 @@ def main():
 
     # Set up the start time
     curr_time = datetime.now()
-    customer_id = " "
+
     # Generate the transactions
     while (datetime.now() - curr_time).seconds < 120:
         try:
             transaction = generate_transaction()
             print(json.dumps(transaction, indent=2))
-            # producer.produce(topic=topic, key=transaction['transaction_id'], value=transaction, on_delivery=delivery_report)
-            # producer.poll(0)
+            producer.produce(topic=topic, key=transaction['transaction_id'], value=transaction, on_delivery=delivery_report)
+            producer.poll(0)
             time.sleep(random.uniform(0.1, 1.0))
         except BufferError as e:
-            # print('Local producer queue is full ({})'.format(len(producer)))
+            print('Local producer queue is full ({})'.format(len(producer)))
             time.sleep(1.0)
         except Exception as e:
             print('Failed to generate transaction: {}'.format(e))
