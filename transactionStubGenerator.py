@@ -133,7 +133,7 @@ def main():
             producer.poll(0)
             time.sleep(random.uniform(0.1, 1.0))
         except BufferError as e:
-            print('Local producer queue is full ({})'.format(len(producer)))
+            print('Local producer queue is full ... backing off for 1 second')
             time.sleep(1.0)
         except Exception as e:
             print('Failed to generate transaction: {}'.format(e))
