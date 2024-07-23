@@ -2,9 +2,6 @@ import json
 import random
 import time
 import datetime
-# import os
-# import sys
-# import csv
 
 from faker import Faker
 from confluent_kafka import SerializingProducer
