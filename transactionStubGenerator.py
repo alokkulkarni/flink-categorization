@@ -6,6 +6,7 @@ import datetime
 from faker import Faker
 from confluent_kafka import SerializingProducer
 from datetime import datetime
+from randomtimestamp import randomtimestamp
 
 # Set up the Faker object
 fake = Faker()
@@ -80,14 +81,15 @@ def generate_transaction():
     customerAccount = customer_to_account_number()
     categoryDescription = transaction_category_to_descriptions()
     transaction_id = fake.uuid4()
-    transaction_time = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f%z')
+    # transaction_time = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f%z')
+    transaction_time = randomtimestamp(start_year=2024, text=False).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
     transaction_amount = round(random.uniform(1.0, 1000.0), 2)
     transaction_category = categoryDescription["Category"]
     transaction_description = categoryDescription["Description"]
     transaction_type = 'credit' if transaction_category == 'income' else 'debit'
     transaction_currency = random.choice(['GBP'])
     location = fake.city()
-    merchant = 'income' if transaction_category == 'income' else fake.company()
+    merchant = transaction_description
     customerid = customerAccount["customerId"]
     accountnumber = customerAccount["accountNumber"]
 
@@ -129,7 +131,7 @@ def main():
         try:
             transaction = generate_transaction()
             print(json.dumps(transaction, indent=2))
-            producer.produce(topic=topic, key=transaction['transaction_id'], value=transaction, on_delivery=delivery_report)
+            producer.produce(topic=topic, key=transaction['transaction_id'], value=json.dumps(transaction), on_delivery=delivery_report)
             producer.poll(0)
             time.sleep(random.uniform(0.1, 1.0))
         except BufferError as e:
