@@ -16,6 +16,8 @@
           <option value="flink" />
           <option value="flink" />
           <option value="flink" />
+          <option value="flinkTransactionInsights" />
+          <option value="flinkTransactionInsights" />
         </list>
       </option>
       <option name="ignoredPackages">
@@ -30,10 +32,14 @@
           <option value="commons-collections:commons-collections:3.2.2" />
           <option value="org.apache.commons:commons-compress:1.24.0" />
           <option value="junit:junit:4.8.2" />
+          <option value="com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.8.11" />
+          <option value="org.apache.httpcomponents:httpclient:4.5.10" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />

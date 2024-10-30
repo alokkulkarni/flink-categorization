@@ -11,7 +11,7 @@ import java.time.ZoneId;
 import java.util.Objects;
 import java.util.Properties;
 
-@SuppressWarnings({"ExtractMethodRecommender", "DuplicatedCode"})
+
 public class flinkTransactionInsights {
 
     private static final String jdbcUrl = "jdbc:postgresql://localhost:5432/postgres";
