@@ -4,6 +4,7 @@ metadata:
   name: flink-categorization
   annotations:
     github.com/project-slug: alokkulkarni/flink-categorization
+    backstage.io/techdocs-ref: flink-categorization
 spec:
   type: other
   lifecycle: unknown
