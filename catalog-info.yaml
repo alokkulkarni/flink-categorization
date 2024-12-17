@@ -6,6 +6,6 @@ metadata:
     github.com/project-slug: alokkulkarni/flink-categorization
     backstage.io/techdocs-ref: flink-categorization
 spec:
-  type: other
-  lifecycle: unknown
-  owner: guests
+  type: system
+  lifecycle: experimental
+  owner: alokkulkarni
