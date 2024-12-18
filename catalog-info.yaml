@@ -6,7 +6,7 @@ metadata:
     github.com/project-slug: alokkulkarni/flink-categorization
     backstage.io/techdocs-ref: dir:.
 spec:
-  type: system
+  type: component
   owner: alokkulkarni
   lifecycle: experimental
   
