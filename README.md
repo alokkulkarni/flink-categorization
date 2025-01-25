@@ -1,5 +1,3 @@
-I can't access the existing README.md file directly. However, I can guide you on how to create a comprehensive README.md file for your project. Here's a template you can use:
-
 ```markdown
 # Flink Categorization
 
